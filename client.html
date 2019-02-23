@@ -37,6 +37,8 @@
     ws.onopen = function () {
         var data = "系统消息：建立连接成功";
         listMsg(data);
+        var user_info = {'type': 'login', 'content': uname};
+        sendMsg(user_info);
     };
 
     /**
@@ -47,7 +49,9 @@
      * msg.content: 消息内容
      */
     ws.onmessage = function (e) {
-        var msg = JSON.parse(e.data);
+    	var msg=e.data;
+
+        /*var msg = JSON.parse(e.data);
         switch (msg.type) {
             case 'system':
                 sender = '系统消息: ';
@@ -68,8 +72,8 @@
                 return;
         }
 
-        var data = sender + msg.content;
-        listMsg(data);
+        var data = sender + msg.content;*/
+        listMsg(msg);
     };
 
     ws.onerror = function () {
