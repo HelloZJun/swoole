@@ -19,9 +19,8 @@
         $this->server->on('request', function ($request, $response) {
             // 接收http请求从get获取message参数的值，给用户推送
             // $this->server->connections 遍历所有websocket连接用户的fd，给所有用户推送
-            $data='123';
             foreach ($this->server->connections as $fd) {
-                $this->server->push($fd, $data);
+                $this->server->push($fd, $request);
             }
         });
         $this->server->start();
