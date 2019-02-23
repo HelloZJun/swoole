@@ -1,6 +1,10 @@
 <?php
 $push_api_url = "192.168.61.130:9000";
-$post_data = '第三方消息推送';
+$post_data = array(
+   "type" => "publish",
+   "message" => "第三方数据推送",
+   "to" => $to_uid, 
+);
 $ch = curl_init ();
 curl_setopt ( $ch, CURLOPT_URL, $push_api_url );
 curl_setopt ( $ch, CURLOPT_POST, 1 );
