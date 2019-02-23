@@ -5,6 +5,13 @@
         $this->server = new Swoole\WebSocket\Server("192.168.61.130", 9000);
         $this->server->on('open', function (swoole_websocket_server $server, $request) {
             echo "server: handshake success with fd{$request->fd}\n";
+            $data=[
+                'type' => 'handshake',
+                'content' => '用户{$request->fd}已上线',
+            ];
+            foreach ($this->server->connections as $fd) {
+                $this->server->push($fd, $data);
+            }
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";

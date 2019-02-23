@@ -48,8 +48,6 @@
      */
     ws.onmessage = function (e) {
         var msg = JSON.parse(e.data);
-        var sender, user_name, name_list, change_type;
-
         switch (msg.type) {
             case 'system':
                 sender = '系统消息: ';
