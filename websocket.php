@@ -10,7 +10,7 @@
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
             $data="{$frame->data}";
             foreach ($this->server->connections as $fd) {
-                $this->server->push($fd, '用户'.$data.'上线了');
+                $this->server->push($fd, '用户id为:'$fd'，用户名为'.$data.'上线了');
             }
         });
         $this->server->on('close', function ($ser, $fd) {
