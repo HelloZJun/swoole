@@ -9,6 +9,7 @@
                 'type' => 'handshake',
                 'content' => '用户{$request->fd}已上线',
             ];
+            $data=json_encode($data);
             foreach ($this->server->connections as $fd) {
                 $this->server->push($fd, $data);
             }
