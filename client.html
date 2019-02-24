@@ -53,8 +53,6 @@
      */
     ws.onmessage = function (e) {
     	var msg=JSON.parse(e.data);    
-        alert(msg.content);
-        console.log(msg.type);
         switch (msg.type) {
             case 'user':
                 sender = msg.from + ': ';
@@ -63,8 +61,6 @@
                 user_name = msg.content;
                 change_type = msg.type;
                 dealUser(user_name, change_type);
-                console.log(user_name);
-                console.log(change_type);
                 return;
             case 'login':
             case 'logout':
@@ -138,13 +134,12 @@
             var user = document.createElement("p");
             user.innerHTML = user_name;
             user_list.appendChild(user);
-            user_num.innerHTML = name_num.val()+1;
+            user_num.innerHTML = user_num.value+1;
         }
         
         user_list.scrollTop = user_list.scrollHeight;
 
         var change = type == 'handshake' ? '上线' : '下线';
-
         var data = '系统消息: ' + user_name + ' 已' + change;
         listMsg(data);
     }
