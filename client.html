@@ -53,10 +53,10 @@
      */
     ws.onmessage = function (e) {
     	var msg=JSON.parse(e.data);    
-        console.log(msg);
         switch (msg.type) {
             case '':
-
+                var user_num = document.getElementById("user_num");
+                user_num.innerHTML=msg;
             case 'user':
                 sender = msg.from + ': ';
                 break;
@@ -131,16 +131,10 @@
      */
     function dealUser(user_name, type) {
         var user_list = document.getElementById("user_list");
-        var user_num = document.getElementById("user_num");
-
         if(type=='handshake'){
             var user = document.createElement("p");
             user.innerHTML = user_name;
             user_list.appendChild(user);
-            var num=parseInt(user_num.innerHTML);
-            num=num+1
-            alert(num);
-
         }
         
         user_list.scrollTop = user_list.scrollHeight;
