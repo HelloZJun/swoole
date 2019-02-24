@@ -38,7 +38,7 @@
         listMsg(data);
         var user_info ={ 
                         "type" : "handshake",
-                        "content" : "uname",
+                        "content" : uname,
                         };
         user_info=JSON.stringify(user_info);
         ws.send(user_info);
@@ -52,7 +52,7 @@
      * msg.content: 消息内容
      */
     ws.onmessage = function (e) {
-    	var msg=e;    
+    	var msg=JSON.parse(e.data);    
         alert(msg.content);
         console.log(msg.type);
         switch (msg.type) {
