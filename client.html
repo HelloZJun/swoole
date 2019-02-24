@@ -54,9 +54,9 @@
     ws.onmessage = function (e) {
     	var msg=JSON.parse(e.data);    
         switch (msg.type) {
-            case '':
+            case 'num':
                 var user_num = document.getElementById("user_num");
-                user_num.innerHTML=msg;
+                user_num.innerHTML=msg.num;
                 console.log(123);
             case 'user':
                 sender = msg.from + ': ';

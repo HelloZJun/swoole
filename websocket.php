@@ -13,9 +13,11 @@
                 $this->server->push($fd, "{$frame->data}");
                 $num=$num+1;
             }
-            
+            $data['type']='num';
+            $data['num']=$num;
+            $data=json_encode($data);
             foreach ($this->server->connections as $fd) {
-                $this->server->push($fd, "$num");
+                $this->server->push($fd, "$data");
             }
         });
         $this->server->on('close', function ($ser, $fd) {
