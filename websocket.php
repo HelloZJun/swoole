@@ -13,6 +13,7 @@
                 $this->server->push($fd, "{$frame->data}");
                 $num=$num+1;
             }
+            echo "$num";
             foreach ($this->server->connections as $fd) {
                 $this->server->push($fd, "$num");
             }
