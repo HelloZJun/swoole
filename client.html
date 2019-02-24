@@ -52,6 +52,7 @@
      */
     ws.onmessage = function (e) {
     	var msg=e.data;    
+        console.log(msg);
         switch (msg.type) {
             case 'user':
                 sender = msg.from + ': ';
@@ -69,9 +70,6 @@
                 dealUser(user_name, change_type, name_list);
                 return;
         }
-
-        var data = sender + content;
-        listMsg(msg);
     };
 
     ws.onerror = function () {
