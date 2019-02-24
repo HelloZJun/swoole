@@ -134,7 +134,8 @@
             var user = document.createElement("p");
             user.innerHTML = user_name;
             user_list.appendChild(user);
-            user_num.innerHTML = user_num.value+1;
+            var num=user_num.value+1
+            user_num.innerHTML = num;
         }
         
         user_list.scrollTop = user_list.scrollHeight;
