@@ -42,7 +42,6 @@
                         };
         user_info=JSON.stringify(user_info);
         ws.send(user_info);
-    ;
     }
     /**
      * 分析服务器返回信息
@@ -57,7 +56,6 @@
             case 'num':
                 var user_num = document.getElementById("user_num");
                 user_num.innerHTML=msg.num;
-                console.log(123);
             case 'user':
                 sender = msg.from + ': ';
                 break;

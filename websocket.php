@@ -16,6 +16,7 @@
             $data['type']='num';
             $data['num']=$num;
             $data=json_encode($data);
+            echo "$this->server->connections";
             foreach ($this->server->connections as $fd) {
                 $this->server->push($fd, "$data");
             }
