@@ -54,6 +54,8 @@
     ws.onmessage = function (e) {
     	var msg=JSON.parse(e.data);    
         switch (msg.type) {
+            case '':
+                alert(msg);
             case 'user':
                 sender = msg.from + ': ';
                 break;
