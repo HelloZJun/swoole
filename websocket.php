@@ -9,7 +9,7 @@
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
             foreach ($this->server->connections as $fd) {
-                $this->server->push($fd, {$frame->data});
+                $this->server->push($fd, "{$frame->data}");
             }
         });
         $this->server->on('close', function ($ser, $fd) {
