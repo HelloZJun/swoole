@@ -52,8 +52,8 @@
      * msg.content: 消息内容
      */
     ws.onmessage = function (e) {
-        alert(e);return;
     	var msg=JSON.parse(e.data);    
+        console.log(msg);
         switch (msg.type) {
             case '':
 
