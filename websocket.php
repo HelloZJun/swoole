@@ -13,6 +13,7 @@
             if($arr['type']=='handshake'){
                 $user_list.=$arr['content'].',';
                 $arr['user_list']=explode(',',$user_list);
+                array_pop($arr['user_list']);
                 $arr['num']=count($arr['user_list']);
                 $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
