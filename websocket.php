@@ -7,13 +7,12 @@
             echo "server: handshake success with fd{$request->fd}\n";
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
-            echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish},{$frame->uname}\n";
-            $frame->uname='123';
+            echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
+            static $user_list='';
             $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
-                foreach ($this->server->connections as $fd) {
-                    $arr['user_list'][]=$fd;
-                }
+                $user_list.=$arr['content'];
+                $arr['user_list']=explode(',',$user_list);
                 $arr['num']=count($arr['user_list']);
                 $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
