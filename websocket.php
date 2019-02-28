@@ -2,13 +2,14 @@
 	class WebsocketTest {
     public $server;
     public function __construct() {
+        static $user_list=[];//使用静态变量存储用户名
         $this->server = new Swoole\WebSocket\Server("192.168.61.130", 9000);
         $this->server->on('open', function (swoole_websocket_server $server, $request) {
             echo "server: handshake success with fd{$request->fd}\n";
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
-            static $user_list=[];
+            global $user_list;
             $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
                 $user_list["{$frame->fd}"]=$arr['content'];
