@@ -7,7 +7,7 @@
             echo "server: handshake success with fd{$request->fd}\n";
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
-            echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
+            echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish},{$frame->uname}\n";
             $frame->uname='123';
             $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
