@@ -9,14 +9,10 @@
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
             $arr=json_decode("{$frame->data}",ture);
-            static $name_list='';
             if($arr['type']=='handshake'){
-                $name_list.=$arr['content'].',';
-                $list=explode($name_list, ',');
-                $arr['num']=count($list);
-                $arr['name_list']=$name_list;
-                $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
+                    $arr['user_list'][]=$fd;
+                    $data=json_encode($arr);
                     $this->server->push($fd, "$data");
                 }
             }
