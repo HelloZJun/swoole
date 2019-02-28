@@ -54,14 +54,10 @@
     	var msg=JSON.parse(e.data);
         console.log(msg);
         switch (msg.type) {
-            case 'num':
-                var user_num = document.getElementById("user_num");
-                user_num.innerHTML=msg.num;
             case 'user':
                 sender = msg.from + ': ';
                 break;
             case 'handshake': 
-
                 var user_num = document.getElementById("user_num");
                 user_num.innerHTML=msg.num;
                 user_list = msg.user_list;
@@ -69,12 +65,13 @@
                 change_type = msg.type;
                 dealUser(user_name, change_type,user_list);
                 return;
-            case 'login':
-            case 'logout':
+            case 'close':
+                var user_num = document.getElementById("user_num");
+                user_num.innerHTML=msg.num;
+                user_list = msg.user_list;
                 user_name = msg.content;
-                name_list = msg.user_list;
                 change_type = msg.type;
-                dealUser(user_name, change_type, name_list);
+                dealUser(user_name, change_type,user_list);
                 return;
         }
     };

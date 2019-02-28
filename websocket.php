@@ -2,7 +2,7 @@
 	class WebsocketTest {
     public $server;
     public function __construct() {
-        static $user_list=[];//使用静态变量存储用户名
+        static $user_list=[];//使用全局静态变量存储用户名
         $this->server = new Swoole\WebSocket\Server("192.168.61.130", 9000);
         $this->server->on('open', function (swoole_websocket_server $server, $request) {
             echo "server: handshake success with fd{$request->fd}\n";
@@ -23,6 +23,16 @@
         });
         $this->server->on('close', function ($ser, $fd) {
             echo "client {$fd} closed\n";
+            global $user_list;
+            unset($user_list["{$fd}"]);
+            $arr['content']=$user_list["{$fd}"];
+            $arr['type']='close';
+            $arr['user_list']=$user_list;
+            $arr['num']=count($arr['user_list']);
+            $data=json_encode($arr);
+            foreach ($this->server->connections as $fd){
+                $this->server->push($fd, "$data");
+            }
         });
         $this->server->on('request', function ($request, $response) {
             // 接收http请求从get获取message参数的值，给用户推送
