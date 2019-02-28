@@ -11,7 +11,7 @@
             static $user_list='';
             $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
-                $user_list.=$arr['content'];
+                $user_list.=$arr['content'].',';
                 $arr['user_list']=explode(',',$user_list);
                 $arr['num']=count($arr['user_list']);
                 $data=json_encode($arr);
