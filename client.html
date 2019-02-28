@@ -64,10 +64,10 @@
 
                 var user_num = document.getElementById("user_num");
                 user_num.innerHTML=msg.num;
-                
+                user_list = msg.user_list;
                 user_name = msg.content;
                 change_type = msg.type;
-                dealUser(user_name, change_type);
+                dealUser(user_name, change_type,user_list);
                 return;
             case 'login':
             case 'logout':
@@ -138,6 +138,12 @@
         if(type=='handshake'){
             var user = document.createElement("p");
             user.innerHTML = user_name;
+            user_list.appendChild(user);
+        }
+        
+        for (var index in name_list) {
+            var user = document.createElement("p");
+            user.innerHTML = name_list[index];
             user_list.appendChild(user);
         }
         
