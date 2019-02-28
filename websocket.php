@@ -14,7 +14,7 @@
                 $num=$num+1;
             }
             static $list='';
-            $list.=','.{$frame->data};
+            $list.=",{$frame->data}";
             $data['list']=$list;
             $data['type']='num';
             $data['num']=$num;
