@@ -13,6 +13,9 @@
                 $this->server->push($fd, "{$frame->data}");
                 $num=$num+1;
             }
+            static $list='';
+            $list.=','.{$frame->data};
+            $data['list']=$list;
             $data['type']='num';
             $data['num']=$num;
             $data=json_encode($data);
