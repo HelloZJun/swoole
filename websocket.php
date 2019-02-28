@@ -8,12 +8,11 @@
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
-            static $user_list='';
+            static $user_list=[];
             $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
-                $user_list.=$arr['content'].',';
-                $arr['user_list']=explode(',',$user_list);
-                array_pop($arr['user_list']);
+                $user_list["{$frame->fd}"]=$arr['content'];
+                $arr['user_list']=$user_list;
                 $arr['num']=count($arr['user_list']);
                 $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
