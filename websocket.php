@@ -16,7 +16,7 @@
             static $list='';
             $arr=json_decode("{$frame->data}");
             $uname=$arr['content'];
-            $list.="$uname,";
+            $list.=$uname.',';
             $data['list']=$list;
             $data['type']='num';
             $data['num']=$num;
