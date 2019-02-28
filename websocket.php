@@ -11,7 +11,7 @@
             $arr=json_decode("{$frame->data}",ture);
             static $name_list='';
             if($arr['type']=='handshake'){
-                $name_list.=$arr['content']',';
+                $name_list.=$arr['content'].',';
                 $arr['name_list']=$name_list;
                 $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
