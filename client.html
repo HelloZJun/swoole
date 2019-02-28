@@ -51,7 +51,8 @@
      * msg.content: 消息内容
      */
     ws.onmessage = function (e) {
-    	var msg=JSON.parse(e.data);    
+    	var msg=JSON.parse(e.data);
+        console.log(msg);
         switch (msg.type) {
             case 'num':
                 var user_num = document.getElementById("user_num");
