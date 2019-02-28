@@ -132,13 +132,11 @@
      */
     function dealUser(user_name, type ,name_list) {
         var user_list = document.getElementById("user_list");
-        if(type=='handshake'){
-            user_list.innerHTML='';
-            for (var index in name_list) {
-                var user = document.createElement("p");
-                user.innerHTML = name_list[index];
-                user_list.appendChild(user);
-            }
+        user_list.innerHTML='';
+        for (var index in name_list) {
+            var user = document.createElement("p");
+            user.innerHTML = name_list[index];
+            user_list.appendChild(user);
         }
         user_list.scrollTop = user_list.scrollHeight;
         var change = type == 'handshake' ? '上线' : '下线';

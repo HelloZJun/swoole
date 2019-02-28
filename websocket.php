@@ -24,8 +24,8 @@
         $this->server->on('close', function ($ser, $fd) {
             echo "client {$fd} closed\n";
             global $user_list;
-            unset($user_list["{$fd}"]);
             $arr['content']=$user_list["{$fd}"];
+            unset($user_list["{$fd}"]);
             $arr['type']='close';
             $arr['user_list']=$user_list;
             $arr['num']=count($arr['user_list']);
