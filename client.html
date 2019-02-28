@@ -61,6 +61,10 @@
                 sender = msg.from + ': ';
                 break;
             case 'handshake': 
+
+                var user_num = document.getElementById("user_num");
+                user_num.innerHTML=msg.num;
+                
                 user_name = msg.content;
                 change_type = msg.type;
                 dealUser(user_name, change_type);
