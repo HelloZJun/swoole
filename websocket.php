@@ -14,7 +14,7 @@
                 $num=$num+1;
             }
             static $list='';
-            $arr=json_decode("{$frame->data}");
+            $arr=json_decode("{$frame->data}",ture);
             $uname=$arr['content'];
             $list.=$uname.',';
             $data['list']=$list;
