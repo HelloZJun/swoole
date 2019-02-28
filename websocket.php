@@ -1,5 +1,6 @@
 <?php
 	class WebsocketTest {
+
     public $server;
     public function __construct() {
         $this->server = new Swoole\WebSocket\Server("192.168.61.130", 9000);
@@ -8,7 +9,7 @@
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
-            $arr=json_decode("{$frame->data}",ture);
+            $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
                 foreach ($this->server->connections as $fd) {
                     $arr['user_list'][]=$fd;
