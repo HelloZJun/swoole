@@ -12,8 +12,10 @@
             if($arr['type']=='handshake'){
                 foreach ($this->server->connections as $fd) {
                     $arr['user_list'][]=$fd;
-                    $arr['num']=count($arr['user_list']);
-                    $data=json_encode($arr);
+                }
+                $arr['num']=count($arr['user_list']);
+                $data=json_encode($arr);
+                foreach ($this->server->connections as $fd) {
                     $this->server->push($fd, "$data");
                 }
             }
