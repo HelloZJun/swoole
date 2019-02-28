@@ -133,7 +133,7 @@
      * @param type  login/logout
      * @param name_list 用户列表
      */
-    function dealUser(user_name, type) {
+    function dealUser(user_name, type ,name_list) {
         var user_list = document.getElementById("user_list");
         if(type=='handshake'){
             var user = document.createElement("p");
@@ -146,7 +146,7 @@
             user.innerHTML = name_list[index];
             user_list.appendChild(user);
         }
-        
+
         user_list.scrollTop = user_list.scrollHeight;
 
         var change = type == 'handshake' ? '上线' : '下线';
