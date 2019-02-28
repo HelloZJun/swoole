@@ -12,7 +12,8 @@
             static $name_list='';
             if($arr['type']=='handshake'){
                 $name_list.=$arr['content'].',';
-                $arr['num']=strlen($name_list,',');
+                $list=explode($name_list, ',');
+                $arr['num']=count($list);
                 $arr['name_list']=$name_list;
                 $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
