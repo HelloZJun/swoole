@@ -45,7 +45,7 @@
     /**
      * 分析服务器返回信息
      *
-     * msg.type : user 普通信息;system 系统信息;handshake 握手信息;login 登陆信息; logout 退出信息;
+     * msg.type : user 普通信息;handshake 握手信息; close 退出信息;
      * msg.from : 消息来源
      * msg.content: 消息内容
      */
@@ -121,8 +121,9 @@
      * 处理用户登陆消息
      *
      * @param user_name 用户名
-     * @param type  login/logout
+     * @param type  handshake/close
      * @param name_list 用户列表
+     * @param num 用户数量
      */
     function dealUser(user_name, type ,name_list ,num) {
         var user_num = document.getElementById("user_num");

@@ -30,7 +30,7 @@ class WebsocketTest {
         $this->server->on('close', function ($ser, $fd) {
             $info=$this->server->connection_info($fd);
             $is_websocket=$info['websocket_status'];
-            if($is_websocket){
+            if($is_websocket){//判断是否为websocket客户端关闭
                 echo "client {$fd} closed\n";
                 global $user_list;
                 $arr['content']=$user_list["{$fd}"];
