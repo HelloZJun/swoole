@@ -55,8 +55,10 @@
         switch (msg.type) {
             case 'user':
                 sender = msg.from + ': '+ msg.content;
-                listMsg(sender);
-                return;
+                break;
+            case 'third':
+                sender = '第三方数据 :'+msg.content;
+                break;
             case 'handshake': 
             case 'close':
                 num = msg.num;
@@ -66,6 +68,7 @@
                 dealUser(user_name,change_type,user_list,num);
                 return;
         }
+        listMsg(sender);
     };
 
     ws.onerror = function () {
