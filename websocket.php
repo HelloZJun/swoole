@@ -30,7 +30,7 @@
         });
         $this->server->on('close', function ($ser, $fd) {
             $info=$ser->connection_info($fd);
-            if($info[WebSocket_status]){
+            echo $info['WebSocket_status'];
                 echo "client {$fd} closed\n";
                 global $user_list;
                 $arr['content']=$user_list["{$fd}"];
@@ -42,7 +42,7 @@
                 foreach ($this->server->connections as $fd){
                     $this->server->push($fd, "$data");
                 }
-            }
+            
         });
         $this->server->on('request', function ($request, $response) {
             // 接收http请求从get获取message参数的值，给用户推送
