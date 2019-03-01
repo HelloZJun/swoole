@@ -29,7 +29,8 @@
             }
         });
         $this->server->on('close', function ($ser, $fd) {
-            $info=$this->server->connection_info($fd);
+            $info=$ser->connection_info($fd);
+            json_encode($info);
             echo $info;
             echo "client {$fd} closed\n";
             global $user_list;
