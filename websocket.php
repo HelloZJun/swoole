@@ -49,8 +49,8 @@ class WebsocketTest {
         });
         $this->server->start();
     }
-    
-    public function pushmsg($data){
+
+    function pushmsg($data){
         foreach ($this->server->connections as $fd) {
             $this->server->push($fd, $data);
         }
