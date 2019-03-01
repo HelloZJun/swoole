@@ -21,7 +21,7 @@
                     $this->server->push($fd, "$data");
                 }
             }
-            if($arr['type'])=='user'){
+            if($arr['type']=='user'){
                 $arr['from']=$user_list["{$frame->fd}"];
                 $data=json_encode($arr);
                 foreach ($this->server->connections as $fd) {
