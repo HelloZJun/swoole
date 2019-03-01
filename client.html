@@ -36,12 +36,11 @@
     ws.onopen = function () {
         var data = "系统消息：建立连接成功";
         listMsg(data);
-        var user_info ={ 
+        var user_info ={
                         "type" : "handshake",
                         "content" : uname,
                         };
-        user_info=JSON.stringify(user_info);
-        ws.send(user_info);
+        sendMsg(user_info);
     }
     /**
      * 分析服务器返回信息
