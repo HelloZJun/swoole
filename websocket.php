@@ -30,7 +30,7 @@
         });
         $this->server->on('close', function ($ser, $fd) {
             $info=$ser->connection_info($fd);
-            echo "$info['WebSocket_status']\n";
+            echo $info['WebSocket_status'];
             echo "client {$fd} closed\n";
             global $user_list;
             $arr['content']=$user_list["{$fd}"];
