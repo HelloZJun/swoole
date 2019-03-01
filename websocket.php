@@ -48,11 +48,11 @@ class WebsocketTest {
             pushmsg($data);
         });
         $this->server->start();
+    }
 
-        function pushmsg($data){
+    function pushmsg($data){
         foreach ($this->server->connections as $fd) {
             $this->server->push($fd, $data);
-        }
         }
     }
 }
