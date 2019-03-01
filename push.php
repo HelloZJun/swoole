@@ -2,7 +2,7 @@
 $push_api_url = "192.168.61.130:9000";
 $post_data = array(
    "type" => "third",
-   "content" => "第三方数据推送",
+   "content" => "hello",
 );
 $ch = curl_init ();
 curl_setopt ( $ch, CURLOPT_URL, $push_api_url );
