@@ -55,7 +55,7 @@
         console.log(msg);
         switch (msg.type) {
             case 'user':
-                sender = msg.from + ': '+msg.content;
+                sender = msg.from + ': '+ msg.content;
                 listMsg(sender);
                 return;
             case 'handshake': 
@@ -122,9 +122,9 @@
      * @param type  login/logout
      * @param name_list 用户列表
      */
-    function dealUser(user_name, type ,name_list) {
+    function dealUser(user_name, type ,name_list ,num) {
         var user_num = document.getElementById("user_num");
-        user_num.innerHTML=msg.num;
+        user_num.innerHTML=num;
         var user_list = document.getElementById("user_list");
         user_list.innerHTML='';
         for (var index in name_list) {
