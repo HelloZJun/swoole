@@ -29,18 +29,18 @@
             }
         });
         $this->server->on('close', function ($ser, $fd) {
-            if($fd){
-                echo "client {$fd} closed\n";
-                global $user_list;
-                $arr['content']=$user_list["{$fd}"];
-                unset($user_list["{$fd}"]);
-                $arr['type']='close';
-                $arr['user_list']=$user_list;
-                $arr['num']=count($arr['user_list']);
-                $data=json_encode($arr);
-                foreach ($this->server->connections as $fd){
-                    $this->server->push($fd, "$data");
-                }
+            $info=$ser->connection_info($fd);
+            echo $info;
+            echo "client {$fd} closed\n";
+            global $user_list;
+            $arr['content']=$user_list["{$fd}"];
+            unset($user_list["{$fd}"]);
+            $arr['type']='close';
+            $arr['user_list']=$user_list;
+            $arr['num']=count($arr['user_list']);
+            $data=json_encode($arr);
+            foreach ($this->server->connections as $fd){
+                $this->server->push($fd, "$data");
             }
         });
         $this->server->on('request', function ($request, $response) {
