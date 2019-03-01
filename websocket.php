@@ -9,6 +9,7 @@
         });
         $this->server->on('message', function (Swoole\WebSocket\Server $server, $frame) {
             echo "receive from {$frame->fd}:{$frame->data},opcode:{$frame->opcode},fin:{$frame->finish}\n";
+
             global $user_list;
             $arr=json_decode("{$frame->data}",'ture');
             if($arr['type']=='handshake'){
@@ -20,9 +21,18 @@
                     $this->server->push($fd, "$data");
                 }
             }
+            if($arr['type'])=='user'){
+                $arr['from']=$user_list["{$frame->fd}"];
+                $data=json_encode($arr);
+                foreach ($this->server->connections as $fd) {
+                    $this->server->push($fd, "$data");
+                }
+
+            }
         });
         $this->server->on('close', function ($ser, $fd) {
             echo "client {$fd} closed\n";
+
             global $user_list;
             $arr['content']=$user_list["{$fd}"];
             unset($user_list["{$fd}"]);

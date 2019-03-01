@@ -55,23 +55,16 @@
         console.log(msg);
         switch (msg.type) {
             case 'user':
-                sender = msg.from + ': ';
-                break;
-            case 'handshake': 
-                var user_num = document.getElementById("user_num");
-                user_num.innerHTML=msg.num;
-                user_list = msg.user_list;
-                user_name = msg.content;
-                change_type = msg.type;
-                dealUser(user_name, change_type,user_list);
+                sender = msg.from + ': '+msg.content;
+                listMsg(sender);
                 return;
+            case 'handshake': 
             case 'close':
-                var user_num = document.getElementById("user_num");
-                user_num.innerHTML=msg.num;
+                num = msg.num;
                 user_list = msg.user_list;
                 user_name = msg.content;
                 change_type = msg.type;
-                dealUser(user_name, change_type,user_list);
+                dealUser(user_name,change_type,user_list,num);
                 return;
         }
     };
@@ -117,7 +110,6 @@
     function listMsg(data) {
         var msg_list = document.getElementById("msg_list");
         var msg = document.createElement("p");
-
         msg.innerHTML = data;
         msg_list.appendChild(msg);
         msg_list.scrollTop = msg_list.scrollHeight;
@@ -131,6 +123,8 @@
      * @param name_list 用户列表
      */
     function dealUser(user_name, type ,name_list) {
+        var user_num = document.getElementById("user_num");
+        user_num.innerHTML=msg.num;
         var user_list = document.getElementById("user_list");
         user_list.innerHTML='';
         for (var index in name_list) {
